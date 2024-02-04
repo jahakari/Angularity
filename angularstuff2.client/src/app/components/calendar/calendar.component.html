@@ -1,0 +1,28 @@
+
+<div class="calendar-container">
+    <div class="calendar-header">
+        <div class="calendar-header-left">
+            <button type="button" class="btn btn-sm btn-primary" (click)="offsetMonth(-1)">
+                &lt;
+            </button>
+        </div>
+        <div class="calendar-header-center">
+            {{ monthName }} {{ year }}
+        </div>
+        <div class="calendar-header-right">
+            <button type="button" class="btn btn-sm btn-primary" (click)="offsetMonth(1)">
+                &gt;
+            </button>
+        </div>
+    </div>
+    <div class="calendar-weekdays">
+        <div *ngFor="let day of _weekdays" class="calendar-weekday-cell">
+            {{ day }}
+        </div>
+    </div>
+    <div class="calendar-cells">
+        <div *ngFor="let cell of _cells" [class]="cell.cellClassList">
+            {{ cell.day }}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    font-size: 1.25em;
+    font-weight: bold;
+}
+
+.calendar-header > div {
+    padding: .5em;
+}
+
+.calendar-header-center {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-weekday-cell {
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    padding: .25em;
+}
+
+.calendar-cells {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+}
+
+.calendar-cell {
+    padding: .25em;
+    outline: 1px solid black;
+    aspect-ratio: 1;
+}
+
+.calendar-cell.today {
+    background: var(--bs-primary);
+}
+
+.calendar-cell.different-month {
+    background: var(--bs-secondary);
+}
+
+.calendar-cell.disabled {
+
+}
+
+.calendar-cell.selected {
+
+}
