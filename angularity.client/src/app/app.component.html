@@ -33,6 +33,6 @@
         </div>
     </div>
     <div class="col-sm-3">
-        <calendar [month]="4" [year]="2024"></calendar>
+        <calendar [month]="4" [year]="2024" [cellModifier]="modifyCalendarCell" (onCellClicked)="calendarCellClicked($event)"></calendar>
     </div>
 </div>

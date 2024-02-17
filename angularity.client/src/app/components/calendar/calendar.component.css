@@ -52,5 +52,9 @@
 }
 
 .calendar-cell.selected {
+    background: var(--bs-success);
+}
 
+.calendar-cell.clickable {
+    cursor: pointer;
 }

@@ -13,10 +13,16 @@ export default class CalendarCell {
         return this._date;
     }
 
-    private _day: number | null = null;
+    private _dayOfMonth: number | null = null;
 
-    public get day(): number {
-        return this._day ??= this._date.getDate();
+    public get dayOfMonth(): number {
+        return this._dayOfMonth ??= this._date.getDate();
+    }
+
+    private _dayOfWeek: number | null = null;
+
+    public get dayOfWeek(): number {
+        return this._dayOfWeek ??= this._date.getDay();
     }
 
     private _isWeekend: boolean | null = null;
@@ -67,6 +73,16 @@ export default class CalendarCell {
         this._cellClass = value;
     }
 
+    private _isClickable: boolean = false;
+
+    public get isClickable(): boolean {
+        return this._isClickable;
+    }
+
+    public set isClickable(value: boolean) {
+        this._isClickable = value;
+    }
+
     public get cellClassList(): string[] {
         let list: string[] = ["calendar-cell"];
 
@@ -76,6 +92,7 @@ export default class CalendarCell {
             .pushIf(!this.isInCalendarMonth, "different-month")
             .pushIf(this.isDisabled, "disabled")
             .pushIf(this.isSelected, "selected")
+            .pushIf(this.isClickable, "clickable")
             .pushIf(!!this.cellClass, this.cellClass!);
     }
 }

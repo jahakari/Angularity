@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, Output, OnInit, EventEmitter } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Range } from "../../decorators/Range";
 import CalendarCell from "./CalendarCell";
@@ -20,6 +20,12 @@ export class CalendarComponent implements OnInit {
     @Range(1900, 2999)
     year!: number;
 
+    @Input()
+    cellModifier = (c: CalendarCell) => { };
+
+    @Output()
+    onCellClicked = new EventEmitter<CalendarCell>();
+
     _months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     _weekdays: string[] = ["S", "M", "T", "W", "T", "F", "S"];
     _cells: CalendarCell[] = [];
@@ -30,6 +36,24 @@ export class CalendarComponent implements OnInit {
 
     ngOnInit() {
         this.generateCells();
+    }
+
+    private modifyCell(cell: CalendarCell) {
+        if (!!this.onCellClicked.observers.length) {
+            cell.isClickable = true;
+        }
+
+        this.cellModifier(cell);
+    }
+
+    cellClicked(cell: CalendarCell) {
+        this.onCellClicked.emit(cell);
+    }
+
+    refresh() {
+        for (let cell of this._cells) {
+            this.modifyCell(cell);
+        }
     }
 
     generateCells() {
@@ -47,7 +71,10 @@ export class CalendarComponent implements OnInit {
         this._cells = [];
 
         for (; date <= end; date = date.addDays(1)) {
-            this._cells.push(new CalendarCell(date, this.month));
+            let cell = new CalendarCell(date, this.month);
+            this.modifyCell(cell);
+
+            this._cells.push(cell);
         }
     }
 

@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WeatherForecast } from './WeatherForecast';
 import { BadgeComponent } from './components/badge.component';
 import { CalendarComponent } from "./components/calendar/calendar.component";
+import CalendarCell from './components/calendar/CalendarCell';
 
 @Component({
     selector: 'app-root',
@@ -13,7 +14,12 @@ import { CalendarComponent } from "./components/calendar/calendar.component";
     imports: [CommonModule, BadgeComponent, CalendarComponent]
 })
 export class AppComponent implements OnInit {
-    public isLoading: boolean = false;
+    @ViewChild(CalendarComponent)
+    calendar!: CalendarComponent;
+
+    selectedDate: Date = new Date();
+
+    public isLoading = false;
     public forecasts: WeatherForecast[] = [];
 
     constructor(private http: HttpClient) { }
@@ -22,7 +28,7 @@ export class AppComponent implements OnInit {
         this.getForecasts();
     }
 
-    async getForecasts() {
+    getForecasts() {
         this.isLoading = true;
 
         this.http.get<WeatherForecast[]>('/weatherforecast')
@@ -31,5 +37,18 @@ export class AppComponent implements OnInit {
                 error: (e) => console.log(e),
                 complete: () => this.isLoading = false
             });
+    }
+
+    modifyCalendarCell = (cell: CalendarCell) => {
+        if (cell.dayOfWeek == 1) {
+            cell.cellClass = "monday";
+        }
+
+        cell.isSelected = (cell.date.getTime() == this.selectedDate?.getTime());
+    }
+
+    calendarCellClicked(cell: CalendarCell) {
+        this.selectedDate = cell.date;
+        this.calendar.refresh();
     }
 }

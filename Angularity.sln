@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34321.82
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularStuff2.Server", "AngularStuff2.Server\AngularStuff2.Server.csproj", "{758E8999-A3BD-4337-916E-F15E911E0250}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Angularity.Server", "Angularity.Server\Angularity.Server.csproj", "{758E8999-A3BD-4337-916E-F15E911E0250}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "angularstuff2.client", "angularstuff2.client\angularstuff2.client.esproj", "{57866C2C-48C8-4E1F-B40C-B9E90BC56F99}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "angularity.client", "angularity.client\angularity.client.esproj", "{57866C2C-48C8-4E1F-B40C-B9E90BC56F99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

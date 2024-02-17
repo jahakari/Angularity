@@ -21,8 +21,8 @@
         </div>
     </div>
     <div class="calendar-cells">
-        <div *ngFor="let cell of _cells" [class]="cell.cellClassList">
-            {{ cell.day }}
+        <div *ngFor="let cell of _cells" [class]="cell.cellClassList" (click)="cellClicked(cell)">
+            {{ cell.dayOfMonth }}
         </div>
     </div>
 </div>

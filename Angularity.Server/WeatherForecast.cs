@@ -1,4 +1,4 @@
-namespace AngularStuff2.Server;
+namespace Angularity.Server;
 
 public class WeatherForecast
 {

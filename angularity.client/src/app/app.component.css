@@ -15,3 +15,7 @@ th, td {
 table {
     margin: 0 auto;
 }
+
+::ng-deep .calendar-cell.monday {
+    background-color: var(--bs-info);
+}
